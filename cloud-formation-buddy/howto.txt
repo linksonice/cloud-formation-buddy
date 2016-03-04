@@ -1,0 +1,17 @@
+CFNBuddyApp - version 0.1.0
+By Marcilio Mendonca - March 2016
+
+Features:
+- combines small independent CloudFormation template files into a single template file
+- searches for CloudFormation templates on one or more user-defined directories (eg, project, shared)
+- allows user-defined variables to be referenced by templates 
+- validate well-formedness of output CloudFormation template
+
+Running:
+
+java CFNBuddyApp
+    -t /home/user/templates/projectA/                       (projectA-specific mini-templates) 
+    -t /home/user/templates/shared/                         (shared mini-templates)
+    -o /home/user/templates/projectA/output/                (path for generated output template)
+    -v /home/user/templates/projectA/variables.properties   (path to name=value variables file)
+

@@ -1,0 +1,25 @@
+{
+   "AWSTemplateFormatVersion" : "${AWSTemplateFormatVersion}",
+   "Description" : "AWS CloudFormation Sample Template VPC_AutoScaling_With_Public_IPs.template: Sample template showing how to create a load balanced, auto scaled group in a VPC where the EC2 instances can directly access the internet. **WARNING** This template creates Elastic Load Balancers and Amazon EC2 instances. You will be billed for the AWS resources used if you create a stack from this template.",
+  
+   "Parameters" : {
+      <#include "parameters.template">
+   },  
+
+   "Mappings" : {
+      <#include "mappings.template">
+   },
+
+   "Resources" : {
+      <#include "resources/vpc.template">,    
+      <#include "resources/elb.template">,
+      <#include "resources/asg.template">,
+      <#include "resources/bastion.template">
+   },
+
+   "Outputs" : {
+      <#include "outputs.template">
+   }   
+
+}
+  

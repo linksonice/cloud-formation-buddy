@@ -1,0 +1,31 @@
+	    "BastionEC2Instance" : {
+	      "Type" : "AWS::EC2::Instance",
+	      "DependsOn" : "GatewayToInternet",
+	      "Properties" : {
+	        "InstanceType" : { "Ref" : "BastionEC2InstanceType" },
+	        "KeyName"  : { "Ref" : "KeyName" },
+	        "ImageId"  : { "Fn::FindInMap" : [ "AWSRegionArch2AMI", { "Ref" : "AWS::Region" }, 
+	                         { "Fn::FindInMap" : [ "AWSInstanceType2Arch", { "Ref" : "BastionEC2InstanceType" }, "Arch" ] } ] },
+	        "NetworkInterfaces" : [{
+	          "GroupSet"                 : [{ "Ref" : "EC2SecurityGroup" }],
+	          "AssociatePublicIpAddress" : "true",
+	          "DeviceIndex"              : "0",
+	          "DeleteOnTermination"      : "true",
+	          "SubnetId"                 : { "Ref" : "PublicSubnet" }
+	        }]
+	      }
+	    },
+	
+	    "EC2SecurityGroup" : {
+	      "Type" : "AWS::EC2::SecurityGroup",
+	      "Properties" : {
+	        "GroupDescription" : "Enable access to the EC2 host",
+	        "VpcId" : { "Ref" : "VPC" },
+	        "SecurityGroupIngress" : [ { 
+	          "IpProtocol" : "tcp",
+	          "FromPort" : "22",  
+	          "ToPort" : "22",
+	          "CidrIp" : { "Ref" : "SSHLocation" }
+	        } ]
+	      }
+		}

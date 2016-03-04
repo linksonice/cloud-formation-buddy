@@ -1,0 +1,8 @@
+		"SubnetConfig" : {
+			"VPC"     : { "CIDR" : "10.0.0.0/16" },
+      		"Public"  : { "CIDR" : "10.0.0.0/24" }
+    	},
+        
+     	<#include "mappings/AWSInstanceType2Arch.template">,
+     	<#include "mappings/AWSInstanceType2NATArch.template">,
+     	<#include "mappings/AWSRegionArch2AMI.template">

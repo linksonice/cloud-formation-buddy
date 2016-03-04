@@ -1,0 +1,8 @@
+	"WebSite" : {
+	  "Description" : "URL of the website",
+	  "Value" :  { "Fn::Join" : [ "", [ "http://", { "Fn::GetAtt" : [ "PublicElasticLoadBalancer", "DNSName" ]}]]}
+	},
+	"BastionDNS" : {
+      "Description" : "DNS of Bastion host",
+      "Value" :  { "Fn::GetAtt" : ["BastionEC2Instance", "PublicDnsName"] }
+    }

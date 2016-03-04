@@ -1,0 +1,26 @@
+	   "PublicElasticLoadBalancer" : {
+	      "Type" : "AWS::ElasticLoadBalancing::LoadBalancer",
+	      "Properties" : {
+	        "CrossZone" : "true",
+	        "SecurityGroups" : [ { "Ref" : "PublicLoadBalancerSecurityGroup" } ],
+	        "Subnets" : [ { "Ref" : "PublicSubnet" } ],
+	        "Listeners" : [ { "LoadBalancerPort" : "80", "InstancePort" : "80", "Protocol" : "HTTP" } ],
+	        "HealthCheck" : {
+	          "Target" : "HTTP:80/",
+	          "HealthyThreshold" : "3",
+	          "UnhealthyThreshold" : "5",
+	          "Interval" : "90",
+	          "Timeout" : "60"
+	        }
+	      }
+	    },
+	
+	    "PublicLoadBalancerSecurityGroup" : {
+	      "Type" : "AWS::EC2::SecurityGroup",
+	      "Properties" : {
+	        "GroupDescription" : "Public ELB Security Group with HTTP access on port 80 from the internet",
+	        "VpcId" : { "Ref" : "VPC" },
+	        "SecurityGroupIngress" : [ { "IpProtocol" : "tcp", "FromPort" : "80", "ToPort" : "80", "CidrIp" : "0.0.0.0/0"} ],
+	        "SecurityGroupEgress" : [ { "IpProtocol" : "tcp", "FromPort" : "80", "ToPort" : "80", "CidrIp" : "0.0.0.0/0"} ]
+	      }
+	    }
