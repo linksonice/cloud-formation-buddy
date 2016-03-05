@@ -7,9 +7,8 @@ In addition, long templates make collaboration challenging which goes against be
 **cloud-formation-buddy** is a pilot project that leverages the <a href="http://freemarker.incubator.apache.org/">Freemarker</a> template
 engine to allow the assembly of cloud formation templates from individual fine-grained meta-templates.
 
-Below is an example of a cloud-formation meta-template interpreted by *cloud-formation-buddy*. The term meta-template refers to a 
-<a href="http://freemarker.incubator.apache.org/">Freemarker</a> template that will be parsed to produce the final CloudFormation
-template. The meta-template is written by combining powerful Freemarker syntax along with CloudFormation JSON constructs. 
+Below is an example of a cloud-formation meta-template (*main.template*) interpreted by *cloud-formation-buddy*. The term meta-template refers to a <a href="http://freemarker.incubator.apache.org/">Freemarker</a> template that will be parsed to produce the final CloudFormation template. The meta-template is written by combining powerful Freemarker syntax along with CloudFormation JSON constructs. 
+
 For instance, the meta-template below contains a directive  `<#include ...>` to include other meta-templates. Hence, meta-templates 
 can be edited by different professionals and later combined to form the final CloudFormation template. 
 
@@ -25,6 +24,7 @@ and start building reusable, maintanable, and readable cloud-formation templates
 **cloud-formation-buddy** also checks for well-formedness of the generated CloudFormation template. 
 After all, we love JSON, right? Maybe not :p
 
+###main.template
 ```
 {
    "AWSTemplateFormatVersion" : "${AWSTemplateFormatVersion}",
@@ -51,6 +51,21 @@ After all, we love JSON, right? Maybe not :p
 }
 ```
 
+The *mappings.template* below includes a set of shared meta-templates, eg, *mappings/AWSInstanceType2Arch.template* that can be 
+reused by other meta-templates in other template projects.
+
+###mappings.template
+```
+      "SubnetConfig" : {
+			"VPC"     : { "CIDR" : "10.0.0.0/16" },
+      		"Public"  : { "CIDR" : "10.0.0.0/24" }
+    	},
+        
+     	<#include "mappings/AWSInstanceType2Arch.template">,
+     	<#include "mappings/AWSInstanceType2NATArch.template">,
+     	<#include "mappings/AWSRegionArch2AMI.template">
+```     	
+     	
 ## Running cloud-formation-buddy
 ```
 java CFNBuddyApp
