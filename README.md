@@ -2,7 +2,7 @@
 
 Large scale CloudFormation templates can quickly become monoliths that are hard to maintain, understand, and reuse (unless you love copying & pasting). 
 In addition, long templates make collaboration challenging which goes against best practices in **DevSecOps** where various professionals 
-(eg, developers, security engineers, system administrators, DBAs, testers) focus on different subsets of the template based on their expertise.
+(eg, developers, security engineers, system administrators, DBAs, testers) focus on different domains of expertise without disturbing others (separation of duties).
 
 **cloud-formation-buddy** is a pilot project that leverages the <a href="http://freemarker.incubator.apache.org/">Freemarker</a> template
 engine to allow the assembly of cloud formation templates from individual fine-grained meta-templates.
