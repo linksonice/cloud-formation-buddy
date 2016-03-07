@@ -14,4 +14,3 @@ java CFNBuddyApp
     -t /home/user/templates/shared/                         (shared mini-templates)
     -o /home/user/templates/projectA/output/                (path for generated output template)
     -v /home/user/templates/projectA/variables.properties   (path to name=value variables file)
-

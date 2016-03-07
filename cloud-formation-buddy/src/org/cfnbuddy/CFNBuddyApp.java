@@ -1,4 +1,4 @@
-package org.cnfbuddy;
+package org.cfnbuddy;
 
 import java.io.IOException;
 import java.util.Optional;

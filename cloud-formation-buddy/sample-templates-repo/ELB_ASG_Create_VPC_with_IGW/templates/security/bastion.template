@@ -7,7 +7,7 @@
 	        "ImageId"  : { "Fn::FindInMap" : [ "AWSRegionArch2AMI", { "Ref" : "AWS::Region" }, 
 	                         { "Fn::FindInMap" : [ "AWSInstanceType2Arch", { "Ref" : "BastionEC2InstanceType" }, "Arch" ] } ] },
 	        "NetworkInterfaces" : [{
-	          "GroupSet"                 : [{ "Ref" : "EC2SecurityGroup" }],
+	          "GroupSet"                 : [{ "Ref" : "BastionEC2SecurityGroup" }],
 	          "AssociatePublicIpAddress" : "true",
 	          "DeviceIndex"              : "0",
 	          "DeleteOnTermination"      : "true",
@@ -15,8 +15,8 @@
 	        }]
 	      }
 	    },
-	
-	    "EC2SecurityGroup" : {
+
+	    "BastionEC2SecurityGroup" : {
 	      "Type" : "AWS::EC2::SecurityGroup",
 	      "Properties" : {
 	        "GroupDescription" : "Enable access to the EC2 host",

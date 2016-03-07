@@ -14,7 +14,7 @@
       <#include "resources/vpc.template">,    
       <#include "resources/elb.template">,
       <#include "resources/asg.template">,
-      <#include "resources/bastion.template">
+      <#include "security/bastion.template">
    },
 
    "Outputs" : {

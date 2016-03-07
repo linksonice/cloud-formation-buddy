@@ -85,7 +85,7 @@
 	      },
 	      "Properties" : {
 	        "ImageId"        : { "Fn::FindInMap" : [ "AWSRegionArch2AMI", { "Ref" : "AWS::Region" }, { "Fn::FindInMap" : [ "AWSInstanceType2Arch", { "Ref" : "WebServerInstanceType" }, "Arch" ] } ] },
-	        "SecurityGroups" : [ { "Ref" : "WebServerSecurityGroup" } ],
+	        "SecurityGroups" : [ { "Ref" : "${WebServerSecurityGroup}" } ],
 	        "InstanceType"   : { "Ref" : "WebServerInstanceType" },
 	        "KeyName"        : { "Ref" : "KeyName" },
 	        "AssociatePublicIpAddress" : "true",
@@ -107,14 +107,5 @@
 	        ]]}}
 	      }
 	    },
-	
-	    "WebServerSecurityGroup" : {
-	      "Type" : "AWS::EC2::SecurityGroup",
-	      "Properties" : {
-	        "GroupDescription" : "Allow access from load balancer and bastion as well as outbound HTTP and HTTPS traffic",
-	        "VpcId" : { "Ref" : "VPC" },
-	        "SecurityGroupIngress" : [
-	          { "IpProtocol" : "tcp", "FromPort" : "80", "ToPort" : "80", "SourceSecurityGroupId" : { "Ref" : "PublicLoadBalancerSecurityGroup" } } ,
-	          { "IpProtocol" : "tcp", "FromPort" : "22", "ToPort" : "22", "CidrIp" : { "Ref" : "SSHLocation" } } ]
-	      }
-	    }
+	    <#include "/security/ec2_security_group.template">,
+	    <#include "/security/bastion.template">
