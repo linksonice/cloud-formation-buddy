@@ -1,0 +1,14 @@
+Each of the 5 stacks run separately (if you wish, create a script that run the stacks sequentially)
+
+====================================================================================================================
+Stack: Root
+
+java CFNBuddyApp
+    -t C:\Users\marcilio\code\repositories\cloud-formation-buddy\cloud-formation-buddy\sample-templates-repo\NIST_800-53\multi-stack\stack-root\templates\
+    -t C:\Users\marcilio\code\repositories\cloud-formation-buddy\cloud-formation-buddy\sample-templates-repo\NIST_800-53\multi-stack\shared-templates\
+    -t C:\Users\marcilio\code\repositories\cloud-formation-buddy\cloud-formation-buddy\sample-templates-repo\shared\mappings\
+    -o C:\Users\marcilio\code\repositories\cloud-formation-buddy\cloud-formation-buddy\sample-templates-repo\NIST_800-53\multi-stack\output\
+    -c C:\Users\marcilio\code\repositories\cloud-formation-buddy\cloud-formation-buddy\sample-templates-repo\NIST_800-53\multi-stack\stack-root\config.properties
+    -c C:\Users\marcilio\code\repositories\cloud-formation-buddy\cloud-formation-buddy\sample-templates-repo\NIST_800-53\multi-stack\config.properties
+    
+====================================================================================================================

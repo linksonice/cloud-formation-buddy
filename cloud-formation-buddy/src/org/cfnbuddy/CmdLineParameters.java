@@ -11,8 +11,8 @@ public class CmdLineParameters {
 	@Option(name = "-o", required = true, metaVar = "[output-file-path]", usage = "Sets the path of the CloudFormation output template")
 	String templateOutputPath;
 
-	@Option(name = "-v", required = false, metaVar = "[variables-file-path]", usage = "Sets the path of the variables files containins name=value pairs that can be referenced inside templates")
-	String variablesFilePath;
+	@Option(name = "-c", required = false, metaVar = "[config-file-path]", usage = "Sets the path of the configuration files containing name=value pairs that can be referenced within templates like this: ${name}")
+	List<String> configFilesPath;
 
 	public List<String> getTemplateDirectories() {
 		return templateDirectories;
@@ -22,8 +22,8 @@ public class CmdLineParameters {
 		return templateOutputPath != null ? templateOutputPath : ".";
 	}
 
-	public String getVariablesFilePath() {
-		return variablesFilePath;
+	public List<String> getConfigFilesPath() {
+		return configFilesPath;
 	}
 
 }

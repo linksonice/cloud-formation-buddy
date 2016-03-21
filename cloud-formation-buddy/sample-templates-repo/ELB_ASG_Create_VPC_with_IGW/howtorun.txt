@@ -1,0 +1,2 @@
+Run cfn-builder with the following command-line parameters:
+-t C:\Users\marcilio\workspaces\myawslabs\cfn-repo\repo\ELB_ASG_Create_VPC_with_IGW\templates -t C:\Users\marcilio\workspaces\myawslabs\cfn-repo\repo\shared -o C:\Users\marcilio\workspaces\myawslabs\cfn-repo\repo\ELB_ASG_Create_VPC_with_IGW\output\generated-cfn-file.template -c C:\Users\marcilio\workspaces\myawslabs\cfn-repo\repo\ELB_ASG_Create_VPC_with_IGW\config.properties

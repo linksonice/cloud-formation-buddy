@@ -17,8 +17,8 @@ public class CFNBuddyApp {
 			CFNTemplateBuilder builder = CFNTemplateBuilder
 					.newInstance(parameters.get().getTemplateDirectories())
 					.withOutputPath(parameters.get().getTemplateOutputPath());
-			if (parameters.get().getVariablesFilePath() != null) {
-				builder.withVariablesFilePath(parameters.get().getVariablesFilePath());
+			if (parameters.get().getConfigFilesPath() != null) {
+				builder.withConfigFilesPath(parameters.get().getConfigFilesPath());
 			}
 			builder.build();
 			System.out.println("Done! Success.");

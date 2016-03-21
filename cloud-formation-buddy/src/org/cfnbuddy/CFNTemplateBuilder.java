@@ -27,7 +27,7 @@ public class CFNTemplateBuilder {
 	private final String mainTemplateFile = "main.template";
 	private String outputPath = "cfn-generated.template";
 	private List<String> templateDirectories;
-	private String templateVariablesFilePath;
+	private List<String> configFilesPath = new ArrayList<>();
 	private CFNTemplateValidator templateValidator = new CFNTemplateValidator();
 
 	private CFNTemplateBuilder(List<String> templateDirectories) {
@@ -43,8 +43,8 @@ public class CFNTemplateBuilder {
 		return this;
 	}
 
-	public CFNTemplateBuilder withVariablesFilePath(String templateVariablesFilePath) {
-		this.templateVariablesFilePath = templateVariablesFilePath;
+	public CFNTemplateBuilder withConfigFilesPath(List<String> templateConfigFilesPath) {
+		this.configFilesPath.addAll(templateConfigFilesPath);
 		return this;
 	}
 
@@ -74,7 +74,9 @@ public class CFNTemplateBuilder {
 				fileWriter.write(templateData);
 			}
 		} catch (JsonSyntaxException e) {
-			throw new RuntimeException("Oops, looks like your template is not a valid JSON! Please have a careful look at your templates.", e);
+			throw new RuntimeException(
+					"Oops, looks like your template is not a valid JSON! Please have a careful look at your templates.",
+					e);
 		} catch (IOException | TemplateException e) {
 			throw new RuntimeException(e);
 		}
@@ -82,9 +84,9 @@ public class CFNTemplateBuilder {
 
 	private Map<String, String> populateDataModel() throws IOException {
 		Map<String, String> data = new HashMap<>();
-		if (templateVariablesFilePath != null) {
+		for (String configFile : configFilesPath) {
 			Properties properties = new Properties();
-			Reader reader = new FileReader(templateVariablesFilePath);
+			Reader reader = new FileReader(configFile);
 			properties.load(reader);
 			for (String propName : properties.stringPropertyNames()) {
 				data.put(propName, properties.getProperty(propName));
